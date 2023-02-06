@@ -58,6 +58,8 @@ public:
     QPushButton *butt_guardar_lista;
     QLabel *label;
     QLabel *label_tamano;
+    QLabel *label_archivo;
+    QLabel *label_insertar_2;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindowClass)
@@ -268,10 +270,17 @@ public:
 
         label = new QLabel(centralWidget);
         label->setObjectName("label");
-        label->setGeometry(QRect(160, 90, 101, 16));
+        label->setGeometry(QRect(10, 120, 91, 16));
         label_tamano = new QLabel(centralWidget);
         label_tamano->setObjectName("label_tamano");
-        label_tamano->setGeometry(QRect(260, 90, 41, 20));
+        label_tamano->setGeometry(QRect(100, 120, 41, 20));
+        label_archivo = new QLabel(centralWidget);
+        label_archivo->setObjectName("label_archivo");
+        label_archivo->setGeometry(QRect(360, 120, 101, 16));
+        label_insertar_2 = new QLabel(centralWidget);
+        label_insertar_2->setObjectName("label_insertar_2");
+        label_insertar_2->setGeometry(QRect(270, 120, 91, 16));
+        label_insertar_2->setStyleSheet(QString::fromUtf8(""));
         MainWindowClass->setCentralWidget(centralWidget);
         statusBar = new QStatusBar(MainWindowClass);
         statusBar->setObjectName("statusBar");
@@ -301,8 +310,10 @@ public:
         butt_crear_lista->setText(QCoreApplication::translate("MainWindowClass", "Crear Lista", nullptr));
         butt_editar_lista->setText(QCoreApplication::translate("MainWindowClass", "Editar Lista (abrir)", nullptr));
         butt_guardar_lista->setText(QCoreApplication::translate("MainWindowClass", "Guardar Lista", nullptr));
-        label->setText(QCoreApplication::translate("MainWindowClass", "Tamano de Lista: ", nullptr));
+        label->setText(QCoreApplication::translate("MainWindowClass", "Tamano de Lista:", nullptr));
         label_tamano->setText(QString());
+        label_archivo->setText(QString());
+        label_insertar_2->setText(QCoreApplication::translate("MainWindowClass", "Nombre de Lista:", nullptr));
     } // retranslateUi
 
 };

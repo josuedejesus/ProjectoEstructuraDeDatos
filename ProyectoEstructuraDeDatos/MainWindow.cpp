@@ -1,8 +1,12 @@
 #include "MainWindow.h"
 #include <iostream>
 #include <QMessageBox>
+#include <QInputDialog>
+#include <QDir>
 #include "List.h"
 #include <sstream>
+#include <iostream>
+#include <fstream>
 using namespace std;
 List* lista;
 
@@ -46,6 +50,7 @@ void MainWindow::on_butt_crear_lista_clicked() {
     ui.txt_buscar->show();
     ui.butt_agregar->show();
     ui.butt_eliminar->show();
+    ui.combo_eliminar->clear();
 }
 
 void MainWindow::on_butt_editar_lista_clicked() {
@@ -55,9 +60,27 @@ void MainWindow::on_butt_editar_lista_clicked() {
 }
 
 void MainWindow::on_butt_guardar_lista_clicked() {
+    bool ok;
+    
     ui.label_titulo->setText("Listas Enlazadas - Editar Lista");
     ui.butt_toolbar->setText("Toolbar");
     hide_opciones_crear();
+    QString nameInput = QInputDialog::getText(this, tr("Listas Enlazadas"), tr("Nombre de archivo:"), QLineEdit::Normal, QDir::home().dirName(), &ok);
+    string fileName = nameInput.toStdString() + ".txt";
+    if (ok && !nameInput.isEmpty()) {
+        ofstream outFile (fileName);
+        while (outFile.is_open()) {
+            for (int i = 0; i < lista->size(); i++) {
+                outFile << lista->valueAt(i) << "\n";
+            }
+            outFile.close();
+        }
+        QMessageBox::information(this, tr("Listas Enlazadas"), tr("Archivo creado exitosamente!"));
+    }
+    else {
+
+    }
+    
 }
 
 void MainWindow::on_butt_agregar_clicked() {
@@ -66,27 +89,22 @@ void MainWindow::on_butt_agregar_clicked() {
     cin >> str_input;
     stringstream s(str_input);
     int num_input;
-    try {
-        if ((s >> num_input).fail() || !(s >> std::ws).eof()) {
-            QMessageBox::warning(this, tr("Listas Enlazadas"), tr("Dato invalido!"));
-        }
-        else {
-            num_input = stoi(str_input);
-            lista->insertNode(num_input);
-            QLabel* label = new QLabel();
-            label->setText(QString::number(num_input));
-            label->setMinimumWidth(20);
-            ui.verticalLayout_2->addWidget(label);
-
-            //agrega elementos de la lista al combobox
-            refreshList();
-
-            //QMessageBox::information(this, tr("Listas Enlazadas"), tr("Agregado exitosamente!"));
-            ui.label_tamano->setText(QString::number(lista->size()));
-        }
+    if ((s >> num_input).fail() || !(s >> std::ws).eof()) {
+        QMessageBox::warning(this, tr("Listas Enlazadas"), tr("Dato invalido!"));
     }
-    catch (int i){
+    else {
+        num_input = stoi(str_input);
+        lista->insertNode(num_input);
+        QLabel* label = new QLabel();
+        label->setText(QString::number(num_input));
+        label->setMinimumWidth(20);
+        ui.verticalLayout_2->addWidget(label);
 
+        //refresca el comboBox
+        refreshList();
+
+        //QMessageBox::information(this, tr("Listas Enlazadas"), tr("Agregado exitosamente!"));
+        ui.label_tamano->setText(QString::number(lista->size()));
     }
     ui.txt_insertar->clear();
 }
@@ -96,38 +114,38 @@ void MainWindow::on_butt_buscar_clicked() {
     cin >> str_valor;
     stringstream s(str_valor);
     int valor;
-    try {
-        if ((s >> valor).fail() || !(s >> std::ws).eof()) {
-            QMessageBox::warning(this, tr("Listas Enlazadas"), tr("Dato invalido!"));
-        }
-        else {
-            valor = stoi(str_valor);
-            if (lista->size() == 0)
-                QMessageBox::warning(this, tr("Listas Enlazadas"), tr("La lista esta vacia!"));
-            else {
-                bool exists = lista->contains(valor);
-                if (exists == true)
-                    QMessageBox::information(this, tr("Listas Enlazadas"), tr("Se encontro el valor ingresado!"));
-                else
-                    QMessageBox::warning(this, tr("Listas Enlazadas"), tr("No se pudo encontrar el valor ingresado!"));
-            }
-        }
+    if ((s >> valor).fail() || !(s >> std::ws).eof()) {
+        QMessageBox::warning(this, tr("Listas Enlazadas"), tr("Dato invalido!"));
     }
-    catch (int i) {
-
+    else {
+        valor = stoi(str_valor);
+        if (lista->size() == 0)
+            QMessageBox::warning(this, tr("Listas Enlazadas"), tr("La lista esta vacia!"));
+        else {
+            bool exists = lista->contains(valor);
+            if (exists)
+                QMessageBox::information(this, tr("Listas Enlazadas"), tr("Se encontro el valor ingresado!"));
+            else
+                QMessageBox::warning(this, tr("Listas Enlazadas"), tr("No se pudo encontrar el valor ingresado!"));
+        }
     }
     ui.txt_buscar->clear();
 }
 
 void MainWindow::on_butt_eliminar_clicked() {
-    int value = stoi(ui.combo_eliminar->currentText().toStdString());
-    bool exists = lista->deleteNode(value);
-    if (exists) {
-        QMessageBox::information(this, tr("Listas Enlazadas"), tr("Se elimino el elemento seleccionado!"));
-        refreshList();
+    if (ui.combo_eliminar->count() == 0) {
+        QMessageBox::warning(this, tr("Listas Enlazadas"), tr("La lista esta vacia!"));
     }
-    else
-        QMessageBox::warning(this, tr("Listas Enlazadas"), tr("No se pudo encontrar el elemento seleccionado!"));
+    else {
+        int value = stoi(ui.combo_eliminar->currentText().toStdString());
+        bool exists = lista->deleteNode(value);
+        if (exists) {
+            QMessageBox::information(this, tr("Listas Enlazadas"), tr("Se elimino el elemento seleccionado!"));
+            refreshList();
+        }
+        else
+            QMessageBox::warning(this, tr("Listas Enlazadas"), tr("No se pudo encontrar el elemento seleccionado!"));
+    }
 }
 
 void MainWindow::hide_opciones_crear() {
@@ -145,6 +163,7 @@ void MainWindow::hide_opciones_crear() {
 
 void MainWindow::refreshList() {
     ui.combo_eliminar->clear();
+    ui.label_tamano->setText(QString::number(lista->size()));
     for (int i = 0; i < lista->size(); i++) {
         ui.combo_eliminar->addItem(QString::number(lista->valueAt(i)));
     }

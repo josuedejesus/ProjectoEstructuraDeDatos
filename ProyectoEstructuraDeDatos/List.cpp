@@ -77,30 +77,25 @@ bool List::contains(int value) {
 
 bool List::deleteNode(int valueToDelete)
 {
-    // caso base, si es el primer nodo de la lista
+    // caso base, si es el primer nodo de la lista o el unico que queda en la lista
     bool isDeleteComplete = false;
     if (this->first->value == valueToDelete) {
         this->first = this->first->next;
         isDeleteComplete = true;
     }
-
-    // case 2: borrar cualquier elemento de enmedio de la lista
-    Node* iteratorNode = this->first;
-    while (iteratorNode->next != nullptr) {
-        if (iteratorNode->next->value == valueToDelete) {
-            iteratorNode->next = iteratorNode->next->next;
-            isDeleteComplete = true;
-            break;
+    else {
+        // case 2: borrar cualquier elemento de enmedio de la lista
+        Node* iteratorNode = this->first;
+        while (iteratorNode->next != nullptr) {
+            if (iteratorNode->next->value == valueToDelete) {
+                iteratorNode->next = iteratorNode->next->next;
+                isDeleteComplete = true;
+                break;
+            }
+            iteratorNode = iteratorNode->next;
         }
-        iteratorNode = iteratorNode->next;
     }
-
-    if (iteratorNode->next == nullptr) {
-        isDeleteComplete = true;
-    }
-    // TODO: check code
-    // caso 3: que pasa si se borra el ultimo?
-
+    
     if (isDeleteComplete) {
         cout << "true\n";
     }

@@ -783,27 +783,56 @@ background-color: rgb(65, 129, 194);</string>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>90</y>
-      <width>101</width>
+      <x>10</x>
+      <y>120</y>
+      <width>91</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Tamano de Lista: </string>
+     <string>Tamano de Lista:</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_tamano">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>90</y>
+      <x>100</x>
+      <y>120</y>
       <width>41</width>
       <height>20</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_archivo">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>120</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_insertar_2">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>120</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>Nombre de Lista:</string>
     </property>
    </widget>
   </widget>
