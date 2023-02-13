@@ -642,66 +642,6 @@
      </property>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="groupBox_graphicview">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>140</y>
-      <width>511</width>
-      <height>331</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
-    <property name="title">
-     <string>Graphic View</string>
-    </property>
-    <widget class="QScrollArea" name="scrollArea">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>30</y>
-       <width>471</width>
-       <height>271</height>
-      </rect>
-     </property>
-     <property name="widgetResizable">
-      <bool>true</bool>
-     </property>
-     <widget class="QWidget" name="scrollAreaWidgetContents">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>469</width>
-        <height>269</height>
-       </rect>
-      </property>
-      <widget class="QWidget" name="widget" native="true">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>441</width>
-         <height>251</height>
-        </rect>
-       </property>
-       <widget class="QWidget" name="verticalLayoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>391</width>
-          <height>231</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_2"/>
-       </widget>
-      </widget>
-     </widget>
-    </widget>
-   </widget>
    <widget class="QFrame" name="frame_opciones">
     <property name="enabled">
      <bool>true</bool>
@@ -783,8 +723,8 @@ background-color: rgb(65, 129, 194);</string>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>120</y>
+      <x>600</x>
+      <y>90</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -796,9 +736,9 @@ background-color: rgb(65, 129, 194);</string>
    <widget class="QLabel" name="label_tamano">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>120</y>
-      <width>41</width>
+      <x>690</x>
+      <y>90</y>
+      <width>101</width>
       <height>20</height>
      </rect>
     </property>
@@ -809,8 +749,8 @@ background-color: rgb(65, 129, 194);</string>
    <widget class="QLabel" name="label_archivo">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>120</y>
+      <x>690</x>
+      <y>60</y>
       <width>101</width>
       <height>16</height>
      </rect>
@@ -822,8 +762,8 @@ background-color: rgb(65, 129, 194);</string>
    <widget class="QLabel" name="label_insertar_2">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>120</y>
+      <x>600</x>
+      <y>60</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -834,6 +774,104 @@ background-color: rgb(65, 129, 194);</string>
     <property name="text">
      <string>Nombre de Lista:</string>
     </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>140</y>
+      <width>531</width>
+      <height>331</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Graphics View</string>
+    </property>
+    <widget class="QFrame" name="frame_view">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>20</y>
+       <width>531</width>
+       <height>301</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QScrollArea" name="scroll_view">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>531</width>
+        <height>301</height>
+       </rect>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scroll_content">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>529</width>
+         <height>299</height>
+        </rect>
+       </property>
+       <widget class="QWidget" name="verticalLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>531</width>
+          <height>301</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="layout">
+         <property name="spacing">
+          <number>20</number>
+         </property>
+         <property name="sizeConstraint">
+          <enum>QLayout::SetNoConstraint</enum>
+         </property>
+         <property name="leftMargin">
+          <number>200</number>
+         </property>
+         <property name="topMargin">
+          <number>10</number>
+         </property>
+         <property name="rightMargin">
+          <number>200</number>
+         </property>
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Expanding</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>

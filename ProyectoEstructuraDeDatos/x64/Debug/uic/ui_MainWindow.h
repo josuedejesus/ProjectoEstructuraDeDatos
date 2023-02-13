@@ -20,6 +20,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -45,12 +46,6 @@ public:
     QLabel *label_buscar;
     QLineEdit *txt_buscar;
     QPushButton *butt_buscar;
-    QGroupBox *groupBox_graphicview;
-    QScrollArea *scrollArea;
-    QWidget *scrollAreaWidgetContents;
-    QWidget *widget;
-    QWidget *verticalLayoutWidget;
-    QVBoxLayout *verticalLayout_2;
     QFrame *frame_opciones;
     QVBoxLayout *verticalLayout;
     QPushButton *butt_crear_lista;
@@ -60,6 +55,13 @@ public:
     QLabel *label_tamano;
     QLabel *label_archivo;
     QLabel *label_insertar_2;
+    QGroupBox *groupBox;
+    QFrame *frame_view;
+    QScrollArea *scroll_view;
+    QWidget *scroll_content;
+    QWidget *verticalLayoutWidget;
+    QVBoxLayout *layout;
+    QSpacerItem *verticalSpacer;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindowClass)
@@ -208,29 +210,6 @@ public:
         butt_buscar->setObjectName("butt_buscar");
         butt_buscar->setGeometry(QRect(126, 297, 75, 24));
         butt_buscar->setStyleSheet(QString::fromUtf8(""));
-        groupBox_graphicview = new QGroupBox(centralWidget);
-        groupBox_graphicview->setObjectName("groupBox_graphicview");
-        groupBox_graphicview->setGeometry(QRect(260, 140, 511, 331));
-        groupBox_graphicview->setStyleSheet(QString::fromUtf8(""));
-        scrollArea = new QScrollArea(groupBox_graphicview);
-        scrollArea->setObjectName("scrollArea");
-        scrollArea->setGeometry(QRect(20, 30, 471, 271));
-        scrollArea->setWidgetResizable(true);
-        scrollAreaWidgetContents = new QWidget();
-        scrollAreaWidgetContents->setObjectName("scrollAreaWidgetContents");
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 469, 269));
-        widget = new QWidget(scrollAreaWidgetContents);
-        widget->setObjectName("widget");
-        widget->setGeometry(QRect(0, 0, 441, 251));
-        verticalLayoutWidget = new QWidget(widget);
-        verticalLayoutWidget->setObjectName("verticalLayoutWidget");
-        verticalLayoutWidget->setGeometry(QRect(0, 0, 391, 231));
-        verticalLayout_2 = new QVBoxLayout(verticalLayoutWidget);
-        verticalLayout_2->setSpacing(6);
-        verticalLayout_2->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_2->setObjectName("verticalLayout_2");
-        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
-        scrollArea->setWidget(scrollAreaWidgetContents);
         frame_opciones = new QFrame(centralWidget);
         frame_opciones->setObjectName("frame_opciones");
         frame_opciones->setEnabled(true);
@@ -270,17 +249,46 @@ public:
 
         label = new QLabel(centralWidget);
         label->setObjectName("label");
-        label->setGeometry(QRect(10, 120, 91, 16));
+        label->setGeometry(QRect(600, 90, 91, 16));
         label_tamano = new QLabel(centralWidget);
         label_tamano->setObjectName("label_tamano");
-        label_tamano->setGeometry(QRect(100, 120, 41, 20));
+        label_tamano->setGeometry(QRect(690, 90, 101, 20));
         label_archivo = new QLabel(centralWidget);
         label_archivo->setObjectName("label_archivo");
-        label_archivo->setGeometry(QRect(360, 120, 101, 16));
+        label_archivo->setGeometry(QRect(690, 60, 101, 16));
         label_insertar_2 = new QLabel(centralWidget);
         label_insertar_2->setObjectName("label_insertar_2");
-        label_insertar_2->setGeometry(QRect(270, 120, 91, 16));
+        label_insertar_2->setGeometry(QRect(600, 60, 91, 16));
         label_insertar_2->setStyleSheet(QString::fromUtf8(""));
+        groupBox = new QGroupBox(centralWidget);
+        groupBox->setObjectName("groupBox");
+        groupBox->setGeometry(QRect(230, 140, 531, 331));
+        frame_view = new QFrame(groupBox);
+        frame_view->setObjectName("frame_view");
+        frame_view->setGeometry(QRect(0, 20, 531, 301));
+        frame_view->setFrameShape(QFrame::StyledPanel);
+        frame_view->setFrameShadow(QFrame::Raised);
+        scroll_view = new QScrollArea(frame_view);
+        scroll_view->setObjectName("scroll_view");
+        scroll_view->setGeometry(QRect(0, 0, 531, 301));
+        scroll_view->setWidgetResizable(true);
+        scroll_content = new QWidget();
+        scroll_content->setObjectName("scroll_content");
+        scroll_content->setGeometry(QRect(0, 0, 529, 299));
+        verticalLayoutWidget = new QWidget(scroll_content);
+        verticalLayoutWidget->setObjectName("verticalLayoutWidget");
+        verticalLayoutWidget->setGeometry(QRect(0, 0, 531, 301));
+        layout = new QVBoxLayout(verticalLayoutWidget);
+        layout->setSpacing(20);
+        layout->setContentsMargins(11, 11, 11, 11);
+        layout->setObjectName("layout");
+        layout->setSizeConstraint(QLayout::SetNoConstraint);
+        layout->setContentsMargins(200, 10, 200, 10);
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        layout->addItem(verticalSpacer);
+
+        scroll_view->setWidget(scroll_content);
         MainWindowClass->setCentralWidget(centralWidget);
         statusBar = new QStatusBar(MainWindowClass);
         statusBar->setObjectName("statusBar");
@@ -306,7 +314,6 @@ public:
         butt_eliminar->setText(QCoreApplication::translate("MainWindowClass", "Eliminar", nullptr));
         label_buscar->setText(QCoreApplication::translate("MainWindowClass", "Buscar", nullptr));
         butt_buscar->setText(QCoreApplication::translate("MainWindowClass", "Buscar", nullptr));
-        groupBox_graphicview->setTitle(QCoreApplication::translate("MainWindowClass", "Graphic View", nullptr));
         butt_crear_lista->setText(QCoreApplication::translate("MainWindowClass", "Crear Lista", nullptr));
         butt_editar_lista->setText(QCoreApplication::translate("MainWindowClass", "Editar Lista (abrir)", nullptr));
         butt_guardar_lista->setText(QCoreApplication::translate("MainWindowClass", "Guardar Lista", nullptr));
@@ -314,6 +321,7 @@ public:
         label_tamano->setText(QString());
         label_archivo->setText(QString());
         label_insertar_2->setText(QCoreApplication::translate("MainWindowClass", "Nombre de Lista:", nullptr));
+        groupBox->setTitle(QCoreApplication::translate("MainWindowClass", "Graphics View", nullptr));
     } // retranslateUi
 
 };

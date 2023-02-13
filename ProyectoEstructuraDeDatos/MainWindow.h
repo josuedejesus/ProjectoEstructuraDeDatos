@@ -21,6 +21,7 @@ private slots:
     void on_butt_eliminar_clicked();
     void hide_opciones_crear();
     void refreshList();
+    void clearGraphView(QLayout*);
 private:
     Ui::MainWindowClass ui;
 };
