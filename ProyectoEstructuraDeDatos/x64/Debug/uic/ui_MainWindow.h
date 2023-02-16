@@ -19,6 +19,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
@@ -37,11 +38,12 @@ public:
     QLabel *label_titulo;
     QPushButton *butt_toolbar;
     QGroupBox *groupBox_menu;
+    QVBoxLayout *verticalLayout_2;
     QLabel *label_insertar;
     QLineEdit *txt_insertar;
+    QPushButton *butt_agregar;
     QLabel *label_eliminar;
     QComboBox *combo_eliminar;
-    QPushButton *butt_agregar;
     QPushButton *butt_eliminar;
     QLabel *label_buscar;
     QLineEdit *txt_buscar;
@@ -62,6 +64,9 @@ public:
     QWidget *verticalLayoutWidget;
     QVBoxLayout *layout;
     QSpacerItem *verticalSpacer;
+    QRadioButton *rb_listaEnlazada;
+    QRadioButton *rb_queue;
+    QRadioButton *rb_stack;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindowClass)
@@ -174,42 +179,93 @@ public:
 #endif
         groupBox_menu->setPalette(palette);
         groupBox_menu->setStyleSheet(QString::fromUtf8(""));
+        verticalLayout_2 = new QVBoxLayout(groupBox_menu);
+        verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_2->setObjectName("verticalLayout_2");
         label_insertar = new QLabel(groupBox_menu);
         label_insertar->setObjectName("label_insertar");
-        label_insertar->setGeometry(QRect(79, 46, 40, 16));
+        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(label_insertar->sizePolicy().hasHeightForWidth());
+        label_insertar->setSizePolicy(sizePolicy);
         label_insertar->setStyleSheet(QString::fromUtf8(""));
+        label_insertar->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_2->addWidget(label_insertar);
+
         txt_insertar = new QLineEdit(groupBox_menu);
         txt_insertar->setObjectName("txt_insertar");
-        txt_insertar->setGeometry(QRect(10, 70, 191, 21));
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(txt_insertar->sizePolicy().hasHeightForWidth());
+        txt_insertar->setSizePolicy(sizePolicy1);
         txt_insertar->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
-        label_eliminar = new QLabel(groupBox_menu);
-        label_eliminar->setObjectName("label_eliminar");
-        label_eliminar->setGeometry(QRect(79, 147, 43, 16));
-        label_eliminar->setStyleSheet(QString::fromUtf8(""));
-        combo_eliminar = new QComboBox(groupBox_menu);
-        combo_eliminar->setObjectName("combo_eliminar");
-        combo_eliminar->setGeometry(QRect(10, 170, 191, 20));
-        combo_eliminar->setStyleSheet(QString::fromUtf8(""));
+
+        verticalLayout_2->addWidget(txt_insertar);
+
         butt_agregar = new QPushButton(groupBox_menu);
         butt_agregar->setObjectName("butt_agregar");
-        butt_agregar->setGeometry(QRect(126, 97, 75, 24));
+        butt_agregar->setEnabled(true);
+        QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(butt_agregar->sizePolicy().hasHeightForWidth());
+        butt_agregar->setSizePolicy(sizePolicy2);
+        butt_agregar->setBaseSize(QSize(0, 0));
+        butt_agregar->setLayoutDirection(Qt::LeftToRight);
         butt_agregar->setStyleSheet(QString::fromUtf8(""));
+
+        verticalLayout_2->addWidget(butt_agregar);
+
+        label_eliminar = new QLabel(groupBox_menu);
+        label_eliminar->setObjectName("label_eliminar");
+        sizePolicy.setHeightForWidth(label_eliminar->sizePolicy().hasHeightForWidth());
+        label_eliminar->setSizePolicy(sizePolicy);
+        label_eliminar->setStyleSheet(QString::fromUtf8(""));
+        label_eliminar->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_2->addWidget(label_eliminar);
+
+        combo_eliminar = new QComboBox(groupBox_menu);
+        combo_eliminar->setObjectName("combo_eliminar");
+        combo_eliminar->setStyleSheet(QString::fromUtf8(""));
+
+        verticalLayout_2->addWidget(combo_eliminar);
+
         butt_eliminar = new QPushButton(groupBox_menu);
         butt_eliminar->setObjectName("butt_eliminar");
-        butt_eliminar->setGeometry(QRect(126, 196, 75, 24));
+        sizePolicy2.setHeightForWidth(butt_eliminar->sizePolicy().hasHeightForWidth());
+        butt_eliminar->setSizePolicy(sizePolicy2);
         butt_eliminar->setStyleSheet(QString::fromUtf8(""));
+
+        verticalLayout_2->addWidget(butt_eliminar);
+
         label_buscar = new QLabel(groupBox_menu);
         label_buscar->setObjectName("label_buscar");
-        label_buscar->setGeometry(QRect(82, 246, 35, 16));
+        sizePolicy.setHeightForWidth(label_buscar->sizePolicy().hasHeightForWidth());
+        label_buscar->setSizePolicy(sizePolicy);
         label_buscar->setStyleSheet(QString::fromUtf8(""));
+        label_buscar->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_2->addWidget(label_buscar);
+
         txt_buscar = new QLineEdit(groupBox_menu);
         txt_buscar->setObjectName("txt_buscar");
-        txt_buscar->setGeometry(QRect(10, 270, 191, 21));
         txt_buscar->setStyleSheet(QString::fromUtf8(""));
+
+        verticalLayout_2->addWidget(txt_buscar);
+
         butt_buscar = new QPushButton(groupBox_menu);
         butt_buscar->setObjectName("butt_buscar");
-        butt_buscar->setGeometry(QRect(126, 297, 75, 24));
+        sizePolicy2.setHeightForWidth(butt_buscar->sizePolicy().hasHeightForWidth());
+        butt_buscar->setSizePolicy(sizePolicy2);
         butt_buscar->setStyleSheet(QString::fromUtf8(""));
+
+        verticalLayout_2->addWidget(butt_buscar);
+
         frame_opciones = new QFrame(centralWidget);
         frame_opciones->setObjectName("frame_opciones");
         frame_opciones->setEnabled(true);
@@ -289,6 +345,15 @@ public:
         layout->addItem(verticalSpacer);
 
         scroll_view->setWidget(scroll_content);
+        rb_listaEnlazada = new QRadioButton(centralWidget);
+        rb_listaEnlazada->setObjectName("rb_listaEnlazada");
+        rb_listaEnlazada->setGeometry(QRect(320, 10, 51, 20));
+        rb_queue = new QRadioButton(centralWidget);
+        rb_queue->setObjectName("rb_queue");
+        rb_queue->setGeometry(QRect(370, 10, 61, 20));
+        rb_stack = new QRadioButton(centralWidget);
+        rb_stack->setObjectName("rb_stack");
+        rb_stack->setGeometry(QRect(430, 10, 51, 20));
         MainWindowClass->setCentralWidget(centralWidget);
         statusBar = new QStatusBar(MainWindowClass);
         statusBar->setObjectName("statusBar");
@@ -309,8 +374,8 @@ public:
         butt_toolbar->setText(QCoreApplication::translate("MainWindowClass", "Toolbar", nullptr));
         groupBox_menu->setTitle(QCoreApplication::translate("MainWindowClass", "Menu", nullptr));
         label_insertar->setText(QCoreApplication::translate("MainWindowClass", "Insertar", nullptr));
-        label_eliminar->setText(QCoreApplication::translate("MainWindowClass", "Eliminar", nullptr));
         butt_agregar->setText(QCoreApplication::translate("MainWindowClass", "Agregar", nullptr));
+        label_eliminar->setText(QCoreApplication::translate("MainWindowClass", "Eliminar", nullptr));
         butt_eliminar->setText(QCoreApplication::translate("MainWindowClass", "Eliminar", nullptr));
         label_buscar->setText(QCoreApplication::translate("MainWindowClass", "Buscar", nullptr));
         butt_buscar->setText(QCoreApplication::translate("MainWindowClass", "Buscar", nullptr));
@@ -322,6 +387,9 @@ public:
         label_archivo->setText(QString());
         label_insertar_2->setText(QCoreApplication::translate("MainWindowClass", "Nombre de Lista:", nullptr));
         groupBox->setTitle(QCoreApplication::translate("MainWindowClass", "Graphics View", nullptr));
+        rb_listaEnlazada->setText(QCoreApplication::translate("MainWindowClass", "Lista", nullptr));
+        rb_queue->setText(QCoreApplication::translate("MainWindowClass", "Queue", nullptr));
+        rb_stack->setText(QCoreApplication::translate("MainWindowClass", "Stack", nullptr));
     } // retranslateUi
 
 };

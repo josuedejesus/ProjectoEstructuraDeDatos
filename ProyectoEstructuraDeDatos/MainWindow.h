@@ -10,6 +10,10 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void hideMenu();
+    void showMenu();
+    void refreshList();
+    void clearGraphView(QLayout*);
 
 private slots:
     void on_butt_toolbar_clicked();
@@ -19,9 +23,10 @@ private slots:
     void on_butt_agregar_clicked();
     void on_butt_buscar_clicked();
     void on_butt_eliminar_clicked();
-    void hide_opciones_crear();
-    void refreshList();
-    void clearGraphView(QLayout*);
+    void on_rb_listaEnlazada_clicked();
+    void on_rb_queue_clicked();
+    void on_rb_stack_clicked();
+    
 private:
     Ui::MainWindowClass ui;
 };
