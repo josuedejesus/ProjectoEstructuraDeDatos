@@ -10,47 +10,44 @@ Queue::~Queue() {
 }
 
 void Queue::enqueue(int newValue) {
-	this->incrementSize();
-	Node* newNode = new Node(newValue);
-	// caso base : no hay elementos en la cola
-	if (this->tail == nullptr) {
-		this->tail = newNode;
-		return;
-	}
-	// caso 2 : si hay elementos en la lista
-	newNode->next = this->tail;
-	this->tail = newNode;
+    this->incrementSize();
+    Node* newNode = new Node(newValue);
+    // caso 1 : no hay elementos en la cola
+    if (this->head == nullptr) {
+        this->head = newNode;
+        this->tail = newNode;
+        return;
+    }
+    
+    // caso 2 : si hay mas elementos en la lista
+    Node* iteratorNode = this->head;
+    while (iteratorNode != nullptr) {
+        if (iteratorNode->next == nullptr) {
+            iteratorNode->next = newNode;
+            this->tail = iteratorNode;
+            this->tail = iteratorNode->next;
+            return;
+        }
+        iteratorNode = iteratorNode->next;
+    }
 }
 
 int Queue::dequeue()
 {
+    int valueToReturn;
     if (this->getSize() == 0) {
         return 0;
     }
     else if (this->getSize() == 1) {
-        int valueToReturn = this->tail->value;
+        valueToReturn = this->head->value;
         this->tail = nullptr;
         this->head = nullptr;
         this->decrementSize();
         return valueToReturn;
     }
-
-    Node* iteratorNode = this->tail;
-    int valueToReturn = 0;
-    while (iteratorNode->next != nullptr) {
-        // avanzar el apuntador
-        if (iteratorNode->next->next == nullptr) {
-            // estoy en el penultimo
-            valueToReturn = iteratorNode->next->value;
-            iteratorNode->next = iteratorNode->next->next;
-            // iteratorNode->next = nullptr;
-            // linea 111 y 112 son lo mismo
-
-            this->head = iteratorNode;
-            break;
-        }
-        iteratorNode = iteratorNode->next;
-    }
+    valueToReturn = this->head->value;
+    Node* iteratorNode = this->head->next;
+    this->head = iteratorNode;
     this->decrementSize();
     return valueToReturn;
 }
@@ -66,9 +63,9 @@ int Queue::getSize()
 	return this->size;
 }
 
-int Queue::getValue(int index)
+int Queue::print(int index)
 {
-	Node* iteratorNode = this->tail;
+	Node* iteratorNode = this->head;
 	for (int i = 0; i <= index; i++) {
 		if (i == index) {
 			return iteratorNode->value;
@@ -79,12 +76,12 @@ int Queue::getValue(int index)
 	}
 }
 
-bool Queue::contains(int value) {
+bool Queue::exists(int value) {
     bool exists = false;
-    if (this->tail->value == value) {
+    if (this->head->value == value) {
         exists = true;
     }
-    Node* iteratorNode = this->tail;
+    Node* iteratorNode = this->head;
     while (iteratorNode->next != nullptr) {
         if (iteratorNode->next->value == value) {
             exists = true;

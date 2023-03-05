@@ -14,7 +14,7 @@ public:
 	void enqueue(int);
 	int dequeue();
 	int getSize();
-	int getValue(int);
-	bool contains(int);
+	int print(int);
+	bool exists(int);
 };
 

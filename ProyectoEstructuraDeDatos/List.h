@@ -10,9 +10,9 @@ public:
 	~List();
 	void insertNode(int);
 	void printList();
-	int size();
+	int getSize();
 	int valueAt(int index);
-	bool contains(int valor);
+	bool exists(int valor);
 	bool deleteNode(int valueToDelete);
 };
 

@@ -1,2 +1,3 @@
 ﻿  MainWindow.cpp
+C:\Users\joshu\source\repos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\MainWindow.cpp(346): warning C4700: uninitialized local variable 'ok' used
   ProyectoEstructuraDeDatos.vcxproj -> C:\Users\joshu\source\repos\ProyectoEstructuraDeDatos\x64\Debug\ProyectoEstructuraDeDatos.exe

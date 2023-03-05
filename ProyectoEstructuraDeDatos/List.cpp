@@ -32,16 +32,6 @@ void List::printList() {
 	}
 }
 
-int List::size() {
-	int i = 0;
-	Node* iteratorNode = this->first;
-	while (iteratorNode != nullptr) {
-		i++;
-		iteratorNode = iteratorNode->next;
-	}
-	return i;
-}
-
 int List::valueAt(int index) {
 	Node* iteratorNode = this->first;
 	for (int i = 0; i <= index; i++) {
@@ -54,7 +44,7 @@ int List::valueAt(int index) {
 	}
 }
 
-bool List::contains(int value) {
+bool List::exists(int value) {
     bool exists = false;
     if (this->first->value == value) {
         exists = true;
@@ -77,14 +67,12 @@ bool List::contains(int value) {
 
 bool List::deleteNode(int valueToDelete)
 {
-    // caso base, si es el primer nodo de la lista o el unico que queda en la lista
     bool isDeleteComplete = false;
     if (this->first->value == valueToDelete) {
         this->first = this->first->next;
         isDeleteComplete = true;
     }
     else {
-        // case 2: borrar cualquier elemento de enmedio de la lista
         Node* iteratorNode = this->first;
         while (iteratorNode->next != nullptr) {
             if (iteratorNode->next->value == valueToDelete) {
@@ -103,5 +91,15 @@ bool List::deleteNode(int valueToDelete)
         cout << "false\n";
     }
     return isDeleteComplete;
+}
+
+int List::getSize() {
+    int size = 0;
+    Node* iteratorNode = this->first;
+    while (iteratorNode != nullptr) {
+        size++;
+        iteratorNode = iteratorNode->next;
+    }
+    return size;
 }
 
